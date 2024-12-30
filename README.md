@@ -30,4 +30,4 @@ men som jeg personlig mener fører til en bedre induktiv tankegang mtp selve kod
 Bemerkninger:
 Det forekommer av og til bugs ol i koden, jeg har prøvd å programmere rundt det, og fikse så mange som mulig, men av og til får en en bug eller liknende som er vanskelig å replisere og dermed vanskelig å fikse
 
-I tillegg har jeg også brukt chatpgt under deler av Debuggingen, spesielt hvis jeg har slitt lenge med en del. Dvs selve koden er min, chatgpt bla brukt hvis jeg satt fast på noe kode og det var en feil som var vanskelig å se
+I tillegg har jeg også brukt chatpgt under deler av Debuggingen, dette gjelder når jeg slitt lenge med en del av koden som bare ikke ville funger. Dvs selve koden er min, chatgpt bla brukt hvis jeg satt fast på noe kode og det var en feil som var vanskelig å se
