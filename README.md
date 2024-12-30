@@ -4,11 +4,12 @@ Egne prosjekter jeg lager på Fritiden som ikke er relatert til jobb eller skole
 
 Prosjekt nr 1:
 Sjakk.
-Sjakk krever at du har installert pygame på en python-installasjon for å kjøre fra kildefil, men jeg har inkludert en ompakting i dist-filen som jeg mener skal kunne kjøres med dobbeltklikk(men jeg har ikke enda hatt tid til å sjekke at det fungerer på windows).
+Sjakk krever at du har installert pygame på en python-installasjon for å kjøre fra kildefil, men jeg har inkludert en ompakting i dist-filen som jeg mener skal kunne kjøres med dobbeltklikk
+(jeg har ikke enda hatt tid til å sjekke at det fungerer på windows eller om du trenger en python versjon med pygame for at det skal kjøre, og også om excecutable filen kun fungerer for linux).
 Python kan installeres herfra:
 https://www.python.org/downloads/
 
-Pygame kan installeres med:
+Pygame kan installeres med følgende kommando i python terminalen:
 
 pip install pygame-ce
 
