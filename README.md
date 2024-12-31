@@ -38,7 +38,6 @@ Har ikke mac, så kan ikke pakke en excecutable for for systemet, kjør det fra 
 
 Kjøring fra kildekoden:
 Sjakk krever at du har installert pygame på en python-installasjon for å kjøre fra kildefil, men jeg har inkludert en ompakting i dist-filen som jeg mener skal kunne kjøres med dobbeltklikk
-(jeg har ikke enda hatt tid til å sjekke at det fungerer på windows eller om du trenger en python versjon med pygame for at det skal kjøre, og også om excecutable filen kun fungerer for linux).
 Python kan installeres herfra:
 https://www.python.org/downloads/
 
