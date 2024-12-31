@@ -4,18 +4,11 @@ Egne prosjekter jeg lager på Fritiden som ikke er relatert til jobb eller skole
 
 Prosjekt nr 1:
 Sjakk.
-Sjakk krever at du har installert pygame på en python-installasjon for å kjøre fra kildefil, men jeg har inkludert en ompakting i dist-filen som jeg mener skal kunne kjøres med dobbeltklikk
-(jeg har ikke enda hatt tid til å sjekke at det fungerer på windows eller om du trenger en python versjon med pygame for at det skal kjøre, og også om excecutable filen kun fungerer for linux).
-Python kan installeres herfra:
-https://www.python.org/downloads/
 
-Pygame kan installeres med følgende kommando i python terminalen:
 
-pip install pygame-ce
+Åpne filen i Python IDLE (Eller ditt favoritt koderedigeringsprogram) og kjør den, eller kjør filen direkte fra Python-terminalen
 
-Her er mer dokumentasjon for pygame:
-https://pypi.org/project/pygame-ce/
-
+Formål:
 Formålet med å lage dette prosjektet var å forbedre programmeringskunnskapene mine ved å programmere et spill uten en spillmotor, kun ved hjelp av spillbiblioteket pygame.
 
 Krav:
@@ -32,3 +25,28 @@ Bemerkninger:
 Det forekommer av og til bugs ol i koden, jeg har prøvd å programmere rundt det, og fikse så mange som mulig, men av og til får en en bug eller liknende som er vanskelig å replisere og dermed vanskelig å fikse
 
 I tillegg har jeg også brukt chatpgt under deler av Debuggingen, dette gjelder når jeg slitt lenge med en del av koden som bare ikke ville funger. Dvs selve koden er min, chatgpt bla brukt hvis jeg satt fast på noe kode og det var en feil som var vanskelig å se
+
+Kjøre spillet:
+Windows:
+Du kan enten dobbeltklikke på Sjakk_Win.exe filen i dist mappen(Hvis den ikke vises i den filen kan det være at du må skru av aktiv scanning for virus i windows defender) eller så kan du kjøre kildefilen som forklares under.
+
+Linux:
+Du kan enten dobbeltklikke på Sjakk_Linux excecutable filen i dist mappen, eller så kan du kjøre kildefilen som forklares under.
+
+MacOS:
+Har ikke mac, så kan ikke pakke en excecutable for for systemet, kjør det fra kiledkode som forklart under
+
+Kjøring fra kildekoden:
+Sjakk krever at du har installert pygame på en python-installasjon for å kjøre fra kildefil, men jeg har inkludert en ompakting i dist-filen som jeg mener skal kunne kjøres med dobbeltklikk
+(jeg har ikke enda hatt tid til å sjekke at det fungerer på windows eller om du trenger en python versjon med pygame for at det skal kjøre, og også om excecutable filen kun fungerer for linux).
+Python kan installeres herfra:
+https://www.python.org/downloads/
+
+Pygame kan installeres med følgende kommando i terminalen(powershell på windows, bash på MacOS og Linux):
+
+pip install pygame-ce
+
+Her er mer dokumentasjon for pygame:
+https://pypi.org/project/pygame-ce/
+
+Åpne filen i Python IDLE (Eller ditt favoritt koderedigeringsprogram) og kjør den, eller kjør filen direkte fra Python-terminalen
