@@ -31,7 +31,7 @@ Windows:
 Du kan enten dobbeltklikke på Sjakk_Win.exe filen i dist mappen(Hvis den ikke vises i den filen kan det være at du må skru av aktiv scanning for virus i windows defender) eller så kan du kjøre kildefilen som forklares under.
 
 Linux:
-Du kan enten dobbeltklikke på Sjakk_Linux excecutable filen i dist mappen, eller så kan du kjøre kildefilen som forklares under.
+Du kan enten høyreklikke på Sjakk_Linux excecutable filen og tillate den å kjøre fult av å dobbeltklikke på Sjakk_Linux excecutable filen i dist mappen, eller så kan du kjøre kildefilen som forklares under.
 
 MacOS:
 Har ikke mac, så kan ikke pakke en excecutable for for systemet, kjør det fra kiledkode som forklart under
