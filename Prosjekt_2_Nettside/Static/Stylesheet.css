@@ -1,0 +1,57 @@
+
+h1{
+    Font-family:Serif;
+}
+#Bakgrunn{
+    background-image: url('Bakgrunnsbilder/Bilde4.jpg');
+    background-repeat:repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    z-index:-100;
+    position:fixed;
+    width:100%;
+    opacity:0.6;
+
+}
+#logo{
+    background-repeat:no-repeat;
+    background-size:inherit;
+    z-index:-100;
+    position:inherit;
+    height:3vw;
+    opacity:1;
+
+}
+
+button{
+    color:blue;
+    background-color: aqua;
+    opacity:1;
+    z-index: 1;
+    position:relative;
+}
+
+#center{
+    justify-content: center;
+    position:relative;
+    margin:auto;
+    max-width:fit-content;
+    align-items:center;
+    padding-top:5vw;
+}
+.flex-container{
+    display:flex;
+    width:100%;
+    background-color: white;
+    height:3vw;
+    justify-content: flex-start;
+    align-self:center;
+    gap:1vw;
+    align-items:center;
+}
+
+#menu{
+    border-bottom-width: 2px;
+    border-bottom-style:solid;
+    border-bottom-color:black;
+}

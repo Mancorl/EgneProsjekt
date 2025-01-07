@@ -49,3 +49,7 @@ Her er mer dokumentasjon for pygame:
 https://pypi.org/project/pygame-ce/
 
 Åpne filen i Python IDLE (Eller ditt favoritt koderedigeringsprogram) og kjør den, eller kjør filen direkte fra Python-terminalen
+
+
+Prosjekt nr 2(WIP):
+Arbeid Pågår
