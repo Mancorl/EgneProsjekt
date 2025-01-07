@@ -16,9 +16,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     async function list_videos(){
         try {
-            const response = await fetch("/Data/Video");
+            const response = await fetch("/Hent_videoer");
             data = await response.json();
-            document.getElementById("center").innerHTML = data;
+            const videodiv = document.createElement("div")
+            videodiv.id = "videoliste";
+
+            console.log(data);
+            window.alert(data);
+            for (let i =0; i<data.length;i++){
+                videodiv.append(data[i])
+            }
+            document.getElementById("center").appendChild(videodiv)
             
 
         }catch(error){
