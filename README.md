@@ -39,7 +39,7 @@ Sjakk krever at du har installert pygame på en python-installasjon for å kjør
 Python kan installeres herfra:
 https://www.python.org/downloads/
 
-Pygame kan installeres med følgende kommando i terminalen(powershell på windows, bash på MacOS og Linux):
+Pygame kan installeres med følgende kommando i terminalen(powershell på windows, zsh på MacOS og bash på Linux):
 
 pip install pygame-ce
 
