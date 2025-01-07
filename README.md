@@ -6,8 +6,6 @@ Prosjekt nr 1:
 Sjakk.
 
 
-Åpne filen i Python IDLE (Eller ditt favoritt koderedigeringsprogram) og kjør den, eller kjør filen direkte fra Python-terminalen
-
 Formål:
 Formålet med å lage dette prosjektet var å forbedre programmeringskunnskapene mine ved å programmere et spill uten en spillmotor, kun ved hjelp av spillbiblioteket pygame.
 
