@@ -38,6 +38,7 @@ button{
     max-width:fit-content;
     align-items:center;
     padding-top:5vw;
+    justify-content: flex-start;
 }
 .flex-container{
     display:flex;
@@ -54,4 +55,8 @@ button{
     border-bottom-width: 2px;
     border-bottom-style:solid;
     border-bottom-color:black;
+}
+
+#videodiv{
+    max-width: 360px;
 }

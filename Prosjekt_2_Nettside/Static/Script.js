@@ -16,23 +16,35 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     async function list_videos(){
         try {
-            const response = await fetch("/Hent_videoer");
+            let response = await fetch("/Hent_antall_videoer");
             data = await response.json();
-            const videodiv = document.createElement("div")
-            videodiv.id = "videoliste";
+            
+
 
             console.log(data);
             window.alert(data);
             for (let i =0; i<data.length;i++){
-                videodiv.append(data[i])
+                const videodiv = document.createElement("div");
+                videodiv.id = i;
+                const actiondiv = document.createElement("a");
+                actiondiv.onclick=function(){Visvideo(i,actiondiv.value)};
+                actiondiv.value=data[i];
+                actiondiv.append(data[i]);
+                videodiv.append(actiondiv);
+                
+                document.getElementById("center").append(videodiv);
             }
-            document.getElementById("center").appendChild(videodiv)
-            
+
 
         }catch(error){
             console.error(error);
         }
         
+    }
+
+    function Visvideo(i,vid){
+        window.alert(i)
+        window.alert(vid)
     }
 });
 
