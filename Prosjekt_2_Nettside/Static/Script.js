@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 const videodiv = document.createElement("div");
                 videodiv.id = i;
                 const actiondiv = document.createElement("a");
-                actiondiv.onclick=function(){Visvideo(i,actiondiv.value)};
                 actiondiv.value=data[i];
+                actiondiv.onclick=function(){Visvideo(i)};
                 actiondiv.append(data[i]);
                 videodiv.append(actiondiv);
                 
@@ -42,9 +42,29 @@ document.addEventListener("DOMContentLoaded", ()=>{
         
     }
 
-    function Visvideo(i,vid){
+    async function Visvideo(i){
         window.alert(i)
-        window.alert(vid)
+        document.getElementById("center").textContent="";
+        document.getElementById("center").textContent="Video is loading, please wait";
+        let response = await fetch("/Hent_videoer",{
+            method:"POST",
+            headers:{
+                "content-type":"application/x-www-form-urlencoded",
+            },
+            body:`video=${i}`,
+        });
+        window.alert(i)
+        data = await response.blob()
+        let videoelement = document.createElement("video")
+        videoelement.src = URL.createObjectURL(data)
+        videoelement.type="video/mp4"
+        videoelement.setAttribute("controls", true)
+        videoelement.setAttribute("width","360px")
+
+        document.getElementById("center").textContent=""
+        document.getElementById("center").appendChild(videoelement)
+
+
     }
 });
 

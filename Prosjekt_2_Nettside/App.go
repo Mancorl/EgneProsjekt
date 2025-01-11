@@ -3,9 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"os"
+	"path/filepath"
+	"strconv"
+	"time"
 )
 
 func main() {
@@ -17,21 +19,32 @@ func main() {
 }
 
 func List_vids(s http.ResponseWriter, r *http.Request) {
-	streng := r.URL.String()
+	streng, err := strconv.Atoi(r.FormValue("video"))
+	if err != nil {
+		print(error(err))
+	}
 	fmt.Println(streng)
-
-	fil, err := os.Open("Data/Video/" + streng)
+	Vidlist, err := os.ReadDir("Data/Video")
 	if err != nil {
-		fmt.Println(err)
+		print(error(err))
 	}
+	var fil *os.File
+	for i := range Vidlist {
+		if i == streng {
+			fil, err = (os.Open(filepath.Join("Data/Video", Vidlist[i].Name())))
+			if err != nil {
+				print(error(err))
+			}
+			print(fil.Name())
+			break
+		}
 
+	}
+	defer fil.Close()
+	fmt.Println(fil.Name())
 	s.Header().Set("Content-Type", "video/mp4")
-	s.Header().Set("Content-Disposition", "inline;filename="+fil.Name())
-	_, err = io.Copy(s, fil)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Print(fil)
+	s.Header().Set("Content-Disposition", "inline;filename="+filepath.Base(fil.Name()))
+	http.ServeContent(s, r, fil.Name(), time.Now(), fil)
 	fmt.Println("i am called")
 
 }
@@ -40,7 +53,7 @@ func List_number_of_videos(s http.ResponseWriter, r *http.Request) {
 	Data, err := os.ReadDir("Data/Video")
 	liste := []string{}
 	if err != nil {
-		fmt.Println(err)
+		print(error(err))
 	}
 	for i := range Data {
 		liste = append(liste, Data[i].Name())
