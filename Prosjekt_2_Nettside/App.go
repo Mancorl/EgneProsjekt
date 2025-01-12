@@ -1,5 +1,6 @@
 package main
 
+//Diverse pakker som brukes
 import (
 	"encoding/json"
 	"fmt"
@@ -10,6 +11,7 @@ import (
 	"time"
 )
 
+// Kjører og henter funksjonene nettsiden vil bruke
 func main() {
 	fmt.Println("Site loaded")
 	http.HandleFunc("/Hent_antall_videoer", List_number_of_videos)
@@ -18,7 +20,9 @@ func main() {
 	http.ListenAndServe(":3000", nil)
 }
 
+// Sender en videofil til å spilles av på front-end
 func List_vids(s http.ResponseWriter, r *http.Request) {
+	//Henter ut hvilken video vi skal sende tilbake fra fetch request
 	streng, err := strconv.Atoi(r.FormValue("video"))
 	if err != nil {
 		print(error(err))
@@ -28,6 +32,7 @@ func List_vids(s http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		print(error(err))
 	}
+	//Finner rett fil i mappen
 	var fil *os.File
 	for i := range Vidlist {
 		if i == streng {
@@ -40,6 +45,7 @@ func List_vids(s http.ResponseWriter, r *http.Request) {
 		}
 
 	}
+	//Sender tilbake videoen deretter lukkes filen når den er streamet ferdig
 	defer fil.Close()
 	fmt.Println(fil.Name())
 	s.Header().Set("Content-Type", "video/mp4")
@@ -49,6 +55,7 @@ func List_vids(s http.ResponseWriter, r *http.Request) {
 
 }
 
+// Henter ut alle videoene i mappen og lar alle listes opp
 func List_number_of_videos(s http.ResponseWriter, r *http.Request) {
 	Data, err := os.ReadDir("Data/Video")
 	liste := []string{}
