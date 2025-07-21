@@ -8,9 +8,12 @@
     <title>Placeholder</title>
 </head>
 <body>
-    <wrapper>
-        <img id="Bakgrunn" src="Bakgrunnsbilder/Bilde4.jpg">
-    </wrapper>
+    <!--<div id="Bakgrunn"></div>-->
+    <picture id="Bakgrunn">
+        <source srcset="Bakgrunnsbilder/Bilde4.jpg" media="(min-aspect-ratio: 0.7/1)">
+        <source srcset="Bakgrunnsbilder/Bilde6.jpeg" media="(max-aspect-ratio: 0.7/1)">
+        <img src="Default.jpg">
+    </picture>
 
     <div id="menu" class="flex-container">
         <a href="/"><img id = "logo" src="Bakgrunnsbilder/Bilde1.jpg"></a>
