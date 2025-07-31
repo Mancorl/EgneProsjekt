@@ -28,12 +28,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
             for (let i =0; i<data.length;i++){
                 const videodiv = document.createElement("div");
                 videodiv.id = i;
-                const actiondiv = document.createElement("a");
+                const actiondiv = document.createElement("form");
                 actiondiv.value=data[i];
                 //Lager en onclick funcksjon som er unik til hvert element,
                 //Dette lar hver listing hente ut den korresponderende videoen
                 actiondiv.onclick=function(){Visvideo(i)};
-                actiondiv.append(data[i]);
+                actiondiv.append("Prosjekt" + (i + 1).toString());
                 videodiv.append(actiondiv);
                 
                 document.getElementById("center").append(videodiv);

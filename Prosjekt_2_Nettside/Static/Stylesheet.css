@@ -5,10 +5,11 @@ h1{
 #Bakgrunn{
     background-repeat:repeat;
     background-attachment: fixed;
-    background-size:cover;
+    background-size:contain;
     z-index:-100;
     position:fixed;
     width:100%;
+    height:auto;
     opacity:0.6;
 
 }
@@ -18,6 +19,7 @@ h1{
     background-size:inherit;
     z-index:-100;
     position:inherit;
+    min-height:50px;
     height:3vw;
     opacity:1;
 
@@ -45,6 +47,7 @@ button{
     width:100%;
     background-color: white;
     height:3vw;
+    min-height:50px;
     justify-content: flex-start;
     align-self:center;
     gap:1vw;
@@ -59,4 +62,21 @@ button{
 
 #videodiv{
     max-width: 360px;
+}
+
+footer{
+    background-color: #000;
+    color: #FFFFFF;
+    height: 200px;
+    width:100%;
+    position:fixed;
+    bottom: 0px;
+    min-height:100px;
+    
+}
+
+footer > div > p{
+    margin:80px;
+    text-align:center;
+
 }
