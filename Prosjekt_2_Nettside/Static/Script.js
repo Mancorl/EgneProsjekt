@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             for (let i =0; i<data.length;i++){
                 const videodiv = document.createElement("div");
                 videodiv.id = i;
-                const actiondiv = document.createElement("form");
+                const actiondiv = document.createElement("button");
+                actiondiv.classList = "btn btn-primary"
                 actiondiv.value=data[i];
                 //Lager en onclick funcksjon som er unik til hvert element,
                 //Dette lar hver listing hente ut den korresponderende videoen
