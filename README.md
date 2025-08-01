@@ -51,3 +51,6 @@ https://pypi.org/project/pygame-ce/
 
 Prosjekt nr 2(WIP):
 Arbeid Pågår
+
+Prosjekt nr 3(WIP):
+Arbeid pågår
