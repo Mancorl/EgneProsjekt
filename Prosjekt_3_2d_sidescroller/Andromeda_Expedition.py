@@ -72,15 +72,23 @@ def instillinger(screen):
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/3
 
-    (wt,ht) = splash_text(screen, "Tilbake", height_adjust=Exit_height_adjust)
+    (wt,ht) = splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
+    (wf,hf) = splash_text(screen, "Veksle Fullskjerm", factoroffset=9, height_adjust=Exit_height_adjust)
+    togglefirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*5.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
+    togglefirkant1 = firkant(w/2 - wt, h/2 - ht*5 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    splash_text(screen, "Veksle fullskjerm", factoroffset=9, height_adjust=Exit_height_adjust)
+
+    #Tilbakeknapp
     avsluttfirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*1.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
     avsluttfirkant1 = firkant(w/2 - wt, h/2 - ht + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
-    splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
+    splash_text(screen, "Tilbake", height_adjust=Exit_height_adjust)
 
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if avsluttfirkant1.collidepoint(pygame.mouse.get_pos()):
                 return "main_menu"
+            if togglefirkant1.collidepoint(pygame.mouse.get_pos()):
+                pygame.display.toggle_fullscreen()
 
     return "instillinger"
 
