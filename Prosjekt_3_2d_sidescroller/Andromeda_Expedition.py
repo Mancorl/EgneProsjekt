@@ -27,7 +27,7 @@ def splash_text(screen, text_string, Chosen_font = "Arial",font_size = 50, color
     font = pygame.font.SysFont(Chosen_font, font_size)
     text = font.render(text_string,True, color)
     (wt,ht) = font.size(text_string)
-    screen.blit(text,(w/2 - wt/2 ,h/2 - ht/2 * factoroffset + height_adjust))
+    screen.blit(text,(w/2 - wt/2 ,h/2 * factoroffset + height_adjust))
     return (wt,ht)
 
 def splash_page(screen):
@@ -42,18 +42,18 @@ def main_menu(screen):
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/3
     (wt,ht) = splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
-    (wi, hi) = splash_text(screen, "Instillinger", factoroffset=9, height_adjust=Exit_height_adjust)
+    (wi, hi) = splash_text(screen, "Instillinger", factoroffset=0.5, height_adjust=Exit_height_adjust)
 
 
     #Definerer og tegner selve alternativene
     avsluttfirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*1.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
     avsluttfirkant1 = firkant(w/2 - wt, h/2 - ht + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
 
-    Instillingsfirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*5.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    Instillingsfirkant1 = firkant(w/2 - wt, h/2 - ht*5 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    Instillingsfirkant2 = firkant(w/2 - wt *1.1, h/2 * 0.5 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
+    Instillingsfirkant1 = firkant(w/2 - wt, h/2 *0.51 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
 
-    splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
-    splash_text(screen, "Instillinger", factoroffset=9, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Avslutt Spillet",factoroffset = 0.95, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Instillinger", factoroffset=0.55, height_adjust=Exit_height_adjust)
 
 
     for event in pygame.event.get():
@@ -76,19 +76,19 @@ def instillinger(screen):
     Exit_height_adjust = h/4
     (wt,ht) = splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
 
-    rezfirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*9.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    rezfirkant1 = firkant(w/2 - wt, h/2 - ht*9 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
-    splash_text(screen, "Endre Oppløsning", factoroffset=17, height_adjust=Exit_height_adjust)
+    rezfirkant2 = firkant(w/2 - wt *1.1, h/2 * 0.044 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
+    rezfirkant1 = firkant(w/2 - wt, h/2 * 0.05 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    splash_text(screen, "Endre Oppløsning", factoroffset=0.09, height_adjust=Exit_height_adjust)
 
     #Velger mellom fullskjerm eller vindu
-    togglefirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*5.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    togglefirkant1 = firkant(w/2 - wt, h/2 - ht*5 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
-    splash_text(screen, "Veksle fullskjerm", factoroffset=9, height_adjust=Exit_height_adjust)
+    togglefirkant2 = firkant(w/2 - wt *1.1, h/2 *0.504 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
+    togglefirkant1 = firkant(w/2 - wt, h/2 *0.51 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    splash_text(screen, "Veksle fullskjerm", factoroffset=0.55, height_adjust=Exit_height_adjust)
 
     #Tilbakeknapp
-    avsluttfirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*1.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    avsluttfirkant1 = firkant(w/2 - wt, h/2 - ht + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
-    splash_text(screen, "Tilbake", height_adjust=Exit_height_adjust)
+    avsluttfirkant2 = firkant(w/2 - wt *1.1, h/2*0.993 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
+    avsluttfirkant1 = firkant(w/2 - wt, h/2 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    splash_text(screen, "Tilbake",factoroffset=1.04, height_adjust=Exit_height_adjust)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
