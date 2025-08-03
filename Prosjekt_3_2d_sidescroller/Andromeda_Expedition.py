@@ -46,14 +46,14 @@ def main_menu(screen):
 
 
     #Definerer og tegner selve alternativene
-    avsluttfirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*1.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    avsluttfirkant1 = firkant(w/2 - wt, h/2 - ht + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    avsluttfirkant2 = firkant(w/3.1, h/2 * 0.94 + Exit_height_adjust, w/2.8, h * 0.12, screen, farge1)
+    avsluttfirkant1 = firkant(w/3, h/2 * 0.948 + Exit_height_adjust, w/3, h * 0.11, screen, farge2)
 
-    Instillingsfirkant2 = firkant(w/2 - wt *1.1, h/2 * 0.5 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    Instillingsfirkant1 = firkant(w/2 - wt, h/2 *0.51 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    Instillingsfirkant2 = firkant(w/3.1, h/2 * 0.49 + Exit_height_adjust, w/2.8, h * 0.12, screen, farge1)
+    Instillingsfirkant1 = firkant(w/3, h/2 * 0.498 + Exit_height_adjust, w/3, h * 0.11, screen, farge2)
 
-    splash_text(screen, "Avslutt Spillet",factoroffset = 0.95, height_adjust=Exit_height_adjust)
-    splash_text(screen, "Instillinger", factoroffset=0.55, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Avslutt Spillet",factoroffset = 0.99, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Instillinger", factoroffset=0.54, height_adjust=Exit_height_adjust)
 
 
     for event in pygame.event.get():
@@ -76,19 +76,19 @@ def instillinger(screen):
     Exit_height_adjust = h/4
     (wt,ht) = splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
 
-    rezfirkant2 = firkant(w/2 - wt *1.1, h/2 * 0.044 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    rezfirkant1 = firkant(w/2 - wt, h/2 * 0.05 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
-    splash_text(screen, "Endre Oppløsning", factoroffset=0.09, height_adjust=Exit_height_adjust)
+    rezfirkant2 = firkant(w/3.25, h/2 * 0.01 + Exit_height_adjust, w/2.6, h * 0.12, screen, farge1)
+    rezfirkant1 = firkant(w/3.10, h/2 * 0.02 + Exit_height_adjust, w/2.8, h * 0.11, screen, farge2)
+    splash_text(screen, "Endre Oppløsning", factoroffset=0.06, height_adjust=Exit_height_adjust)
 
     #Velger mellom fullskjerm eller vindu
-    togglefirkant2 = firkant(w/2 - wt *1.1, h/2 *0.504 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    togglefirkant1 = firkant(w/2 - wt, h/2 *0.51 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    togglefirkant2 = firkant(w/3.25, h/2 * 0.49 + Exit_height_adjust,  w/2.6, h * 0.12, screen, farge1)
+    togglefirkant1 = firkant(w/3.10, h/2 * 0.498 + Exit_height_adjust, w/2.8, h * 0.11, screen, farge2)
     splash_text(screen, "Veksle fullskjerm", factoroffset=0.55, height_adjust=Exit_height_adjust)
 
     #Tilbakeknapp
-    avsluttfirkant2 = firkant(w/2 - wt *1.1, h/2*0.993 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
-    avsluttfirkant1 = firkant(w/2 - wt, h/2 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
-    splash_text(screen, "Tilbake",factoroffset=1.04, height_adjust=Exit_height_adjust)
+    avsluttfirkant2 = firkant(w/3.25, h/2 * 0.94 + Exit_height_adjust, w/2.6, h * 0.12, screen, farge1)
+    avsluttfirkant1 = firkant(w/3.10, h/2 * 0.948 + Exit_height_adjust, w/2.8, h * 0.11, screen, farge2)
+    splash_text(screen, "Tilbake", height_adjust=Exit_height_adjust)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
