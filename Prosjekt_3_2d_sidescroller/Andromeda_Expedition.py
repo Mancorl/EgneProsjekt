@@ -22,7 +22,7 @@ def firkant(koord_vr, koord_lr, bredde, høyde, screen, farge):
     pygame.draw.rect(screen,farge, firkanten)
     return firkanten
 
-def splash_text(screen, text_string, Chosen_font = "Arial",font_size = 80, color=(255,255,255), factoroffset=1, height_adjust = 0):
+def splash_text(screen, text_string, Chosen_font = "Arial",font_size = 50, color=(255,255,255), factoroffset=1, height_adjust = 0):
     w,h = pygame.display.get_surface().get_size()
     font = pygame.font.SysFont(Chosen_font, font_size)
     text = font.render(text_string,True, color)
@@ -57,11 +57,14 @@ def main_menu(screen):
 
 
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+        if event.type == pygame.QUIT:
+                return "quit"
+        if (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
             if avsluttfirkant1.collidepoint(pygame.mouse.get_pos()):
                 return "quit"
             if Instillingsfirkant1.collidepoint(pygame.mouse.get_pos()):
                 return "instillinger"
+            
 
         #Dersom ingenting annet blir valgt fortsetter løkken som før
     return "main_menu"
@@ -70,10 +73,14 @@ def instillinger(screen):
     farge1 = (255,255,255)
     farge2 = (0,0,0)
     w,h = pygame.display.get_surface().get_size()
-    Exit_height_adjust = h/3
-
+    Exit_height_adjust = h/4
     (wt,ht) = splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
-    (wf,hf) = splash_text(screen, "Veksle Fullskjerm", factoroffset=9, height_adjust=Exit_height_adjust)
+
+    rezfirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*9.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
+    rezfirkant1 = firkant(w/2 - wt, h/2 - ht*9 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
+    splash_text(screen, "Endre Oppløsning", factoroffset=17, height_adjust=Exit_height_adjust)
+
+    #Velger mellom fullskjerm eller vindu
     togglefirkant2 = firkant(w/2 - wt *1.1, h/2 - ht*5.1 + Exit_height_adjust, wt * 2.2, ht * 2.2, screen, farge1)
     togglefirkant1 = firkant(w/2 - wt, h/2 - ht*5 + Exit_height_adjust, wt * 2, ht * 2, screen, farge2)
     splash_text(screen, "Veksle fullskjerm", factoroffset=9, height_adjust=Exit_height_adjust)
@@ -84,11 +91,30 @@ def instillinger(screen):
     splash_text(screen, "Tilbake", height_adjust=Exit_height_adjust)
 
     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            return "quit"
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if avsluttfirkant1.collidepoint(pygame.mouse.get_pos()):
                 return "main_menu"
             if togglefirkant1.collidepoint(pygame.mouse.get_pos()):
                 pygame.display.toggle_fullscreen()
+            if rezfirkant1.collidepoint(pygame.mouse.get_pos()):
+                if (w,h) != (2560,1440) and (w,h) != (1920,1080) and (w,h) != (1280,720):
+                    pygame.display.set_mode((2560,1440), pygame.RESIZABLE)
+                #Cant test these two lines properly:
+                elif (w,h) == (2560,1440):
+                    pygame.display.set_mode((1920,1080))
+                elif (w,h) == (1920,1080):
+                    pygame.display.set_mode((1280,720))
+                else:
+                    screeninfo = pygame.display.list_modes()
+                    if screeninfo:
+                        (w,h) = screeninfo[0]
+                    else:
+                        #Skulle aldri måtte kjøres, kun dersom katastrofal feil skulle oppstå
+                        (w,h) = (1920,1080)
+                    pygame.display.set_mode((w,h))
+
 
     return "instillinger"
 
