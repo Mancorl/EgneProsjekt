@@ -99,21 +99,18 @@ def instillinger(screen):
             if togglefirkant1.collidepoint(pygame.mouse.get_pos()):
                 pygame.display.toggle_fullscreen()
             if rezfirkant1.collidepoint(pygame.mouse.get_pos()):
-                if (w,h) != (2560,1440) and (w,h) != (1920,1080) and (w,h) != (1280,720):
-                    pygame.display.set_mode((2560,1440), pygame.RESIZABLE)
-                #Cant test these two lines properly:
-                elif (w,h) == (2560,1440):
-                    pygame.display.set_mode((1920,1080))
-                elif (w,h) == (1920,1080):
-                    pygame.display.set_mode((1280,720))
+                screeninfo = pygame.display.list_modes()
+                nåværende_oppløsning = pygame.display.get_surface().get_size()
+                if nåværende_oppløsning in screeninfo:
+                    index = screeninfo.index(nåværende_oppløsning)
+                    neste_index = (index + 1) % len(screeninfo)
                 else:
-                    screeninfo = pygame.display.list_modes()
-                    if screeninfo:
-                        (w,h) = screeninfo[0]
-                    else:
-                        #Skulle aldri måtte kjøres, kun dersom katastrofal feil skulle oppstå
-                        (w,h) = (1920,1080)
-                    pygame.display.set_mode((w,h))
+                    neste_index = 0
+                
+                pygame.display.set_mode((screeninfo[neste_index]))
+
+
+
 
 
     return "instillinger"
