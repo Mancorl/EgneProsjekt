@@ -1,5 +1,7 @@
 import pygame
 import time
+
+    #initialisering og diverse funksjoner som skal brukes
 def main():
     __init__()#initialiserer pygame
     screen = get_screen()#Lager lerretet vi kan tegne spillet på
@@ -29,6 +31,15 @@ def splash_text(screen, text_string, Chosen_font = "Arial",font_size = 50, color
     (wt,ht) = font.size(text_string)
     screen.blit(text,(w/2 - wt/2 ,h/2 * factoroffset + height_adjust))
     return (wt,ht)
+
+def skalering(font_size):
+    _,h = pygame.display.get_surface().get_size()
+    scale = h / 1440
+    #print("scale: ",scale, "font er: ", scale*font_size,"h er: ",h)
+    return (round(scale * font_size))
+
+
+    #Skjermer og menyer
 
 def fullscreen_change_reversion_screen(screen, time = 600):
     fps_cap = pygame.time.Clock()
@@ -67,12 +78,6 @@ def fullscreen_change_reversion_screen(screen, time = 600):
     pygame.display.toggle_fullscreen()
 
 
-def skalering(font_size):
-    _,h = pygame.display.get_surface().get_size()
-    scale = h / 1440
-    #print("scale: ",scale, "font er: ", scale*font_size,"h er: ",h)
-    return (round(scale * font_size))
-
 def splash_page(screen):
     splash_text(screen,"Laget av Audun Steinkopf i pygame")
     pygame.display.update()
@@ -90,11 +95,21 @@ def main_menu(screen):
     avsluttfirkant2 = firkant(w/2-h/3.2, h/2 * 0.94 + Exit_height_adjust, h/1.6, h * 0.12, screen, farge1)
     avsluttfirkant1 = firkant(w/2-h/3.4, h/2 * 0.948 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
 
-    Instillingsfirkant2 = firkant(w/2-h/3.2, h/2 * 0.49 + Exit_height_adjust, h/1.6, h * 0.12, screen, farge1)
-    Instillingsfirkant1 = firkant(w/2-h/3.4, h/2 * 0.498 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
+    Instillingsfirkant2 = firkant(w/2-h/3.2, h/2 * 0.59 + Exit_height_adjust, h/1.6, h * 0.12, screen, farge1)
+    Instillingsfirkant1 = firkant(w/2-h/3.4, h/2 * 0.598 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
 
-    splash_text(screen, "Avslutt Spillet",font_size=skalering(120),factoroffset = 0.99, height_adjust=Exit_height_adjust)
-    splash_text(screen, "Instillinger",font_size=skalering(120), factoroffset=0.54, height_adjust=Exit_height_adjust)
+    Lastfirkant2 = firkant(w/2-h/3.2, h/2 * 0.24 + Exit_height_adjust, h/1.6, h * 0.12, screen, farge1)
+    Lastfirkant1 = firkant(w/2-h/3.4, h/2 * 0.25 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
+
+    Nyttfirkant2 = firkant(w/2-h/3.2, h/2 * -0.14 + Exit_height_adjust, h/1.6, h * 0.12, screen, farge1)
+    Nyttfirkant1 = firkant(w/2-h/3.4, h/2 * -0.13 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
+
+    splash_text(screen, "Avslutt Spillet",font_size=skalering(120),factoroffset = 0.95, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Instillinger",font_size=skalering(120), factoroffset=0.6, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Last Spill",font_size=skalering(120), factoroffset=0.25, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Nytt spill",font_size=skalering(120), factoroffset=-0.13, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Andromeda Expedition",font_size=skalering(150), factoroffset=-0.5, height_adjust=Exit_height_adjust)
+    
 
 
     for event in pygame.event.get():
@@ -105,6 +120,10 @@ def main_menu(screen):
                 return "quit"
             if Instillingsfirkant1.collidepoint(pygame.mouse.get_pos()):
                 return "instillinger"
+            if Lastfirkant1.collidepoint(pygame.mouse.get_pos()):
+                continue#Fikser senere
+            if Nyttfirkant1.collidepoint(pygame.mouse.get_pos()):
+                new_game()
             
 
         #Dersom ingenting annet blir valgt fortsetter løkken som før
@@ -116,7 +135,6 @@ def instillinger(screen):
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/4
     rez_string = f"Oppløsning: {w}X{h}"
-    #print(rez_string)
     splash_text(screen, rez_string,font_size=skalering(120), factoroffset=0)
 
     rezfirkant2 = firkant(w/2-h/3.2, h/2 * 0.01 + Exit_height_adjust,  h/1.6, h * 0.12, screen, farge1)
@@ -150,10 +168,7 @@ def instillinger(screen):
                 if nåværende_oppløsning in screeninfo:
                     index = screeninfo.index(nåværende_oppløsning)
                     neste_index = (index + 1) % len(screeninfo)
-                    print(screeninfo[neste_index])
-                    #Sirkulerer tilbake til start når vi begynner å få små oppløsninger
                     if screeninfo[neste_index][0]<800 or screeninfo[neste_index][1]<600:
-                        print("Nesteindekstrigger")
                         neste_index = 0
                 else:
                     neste_index = 0
@@ -165,8 +180,10 @@ def instillinger(screen):
 
 
     return "instillinger"
-
-
+#Selve spillet
+def new_game():
+    return
+#Selve spilløkken
 def run(screen):
     running = True
     splash_page(screen)
