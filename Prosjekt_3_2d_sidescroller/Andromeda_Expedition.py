@@ -30,6 +30,43 @@ def splash_text(screen, text_string, Chosen_font = "Arial",font_size = 50, color
     screen.blit(text,(w/2 - wt/2 ,h/2 * factoroffset + height_adjust))
     return (wt,ht)
 
+def fullscreen_change_reversion_screen(screen, time = 600):
+    fps_cap = pygame.time.Clock()
+    w,h = pygame.display.get_surface().get_size()
+    farge1 = (255,255,255)
+    farge2 = (0,0,0)
+    while time > 1:
+        screen.fill((0,0,0))
+        tid = time//60
+
+        akseptfirkant2 = firkant(w/2-h/2.4, h/2 * 0.75, h/1.2, h * 0.12, screen, farge1)
+        akseptfirkant1 = firkant(w/2-h/2.6, h/2 * 0.76, h/1.3, h * 0.11, screen, farge2)
+
+        revertfirkant2 = firkant(w/2-h/2.4, h/2 * 1.22, h/1.2, h * 0.12, screen, farge1)
+        revertfirkant1 = firkant(w/2-h/2.6, h/2 * 1.23, h/1.3, h * 0.11, screen, farge2)
+
+        splash_text(screen, f"Skjermen reverteres om {tid}", font_size=skalering(120), factoroffset=0.25)
+        splash_text(screen, "Behold endringen", font_size=skalering(120) ,factoroffset= 0.76)
+        splash_text(screen, "Gå tilbake", font_size=skalering(120), factoroffset=1.25)
+
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return "quit"
+            if (event.type == pygame.MOUSEBUTTONDOWN and event.button ==1):
+                if revertfirkant1.collidepoint(pygame.mouse.get_pos()):
+                    pygame.display.toggle_fullscreen()
+                    return
+                elif akseptfirkant1.collidepoint(pygame.mouse.get_pos()):
+                    return
+                
+
+        fps_cap.tick(60)#Begrense fpsen er enkel måte å sikre timeout uten å programmere en hel dedikert timer
+        pygame.display.update()
+        time -= 1
+    pygame.display.toggle_fullscreen()
+
+
 def skalering(font_size):
     _,h = pygame.display.get_surface().get_size()
     scale = h / 1440
@@ -78,6 +115,9 @@ def instillinger(screen):
     farge2 = (0,0,0)
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/4
+    rez_string = f"Oppløsning: {w}X{h}"
+    #print(rez_string)
+    splash_text(screen, rez_string,font_size=skalering(120), factoroffset=0)
 
     rezfirkant2 = firkant(w/2-h/3.2, h/2 * 0.01 + Exit_height_adjust,  h/1.6, h * 0.12, screen, farge1)
     rezfirkant1 = firkant(w/2-h/3.4, h/2 * 0.02 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
@@ -100,13 +140,21 @@ def instillinger(screen):
             if avsluttfirkant1.collidepoint(pygame.mouse.get_pos()):
                 return "main_menu"
             if togglefirkant1.collidepoint(pygame.mouse.get_pos()):
+                #Obs toggle fullscreen kan kræsje displayet dersom en bruker ekstreme oppløsninger, aldri gå under 800 bredde 600 høyde
                 pygame.display.toggle_fullscreen()
+                #Dersom noe går galt under fullscreen:
+                fullscreen_change_reversion_screen(screen)
             if rezfirkant1.collidepoint(pygame.mouse.get_pos()):
                 screeninfo = pygame.display.list_modes()
                 nåværende_oppløsning = pygame.display.get_surface().get_size()
                 if nåværende_oppløsning in screeninfo:
                     index = screeninfo.index(nåværende_oppløsning)
                     neste_index = (index + 1) % len(screeninfo)
+                    print(screeninfo[neste_index])
+                    #Sirkulerer tilbake til start når vi begynner å få små oppløsninger
+                    if screeninfo[neste_index][0]<800 or screeninfo[neste_index][1]<600:
+                        print("Nesteindekstrigger")
+                        neste_index = 0
                 else:
                     neste_index = 0
                 
