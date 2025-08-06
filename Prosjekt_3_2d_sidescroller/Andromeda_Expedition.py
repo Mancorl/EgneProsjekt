@@ -30,6 +30,12 @@ def splash_text(screen, text_string, Chosen_font = "Arial",font_size = 50, color
     screen.blit(text,(w/2 - wt/2 ,h/2 * factoroffset + height_adjust))
     return (wt,ht)
 
+def skalering(font_size):
+    _,h = pygame.display.get_surface().get_size()
+    scale = h / 1440
+    #print("scale: ",scale, "font er: ", scale*font_size,"h er: ",h)
+    return (round(scale * font_size))
+
 def splash_page(screen):
     splash_text(screen,"Laget av Audun Steinkopf i pygame")
     pygame.display.update()
@@ -41,19 +47,17 @@ def main_menu(screen):
     farge2 = (0,0,0)
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/3
-    (wt,ht) = splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
-    (wi, hi) = splash_text(screen, "Instillinger", factoroffset=0.5, height_adjust=Exit_height_adjust)
 
 
     #Definerer og tegner selve alternativene
-    avsluttfirkant2 = firkant(w/3.1, h/2 * 0.94 + Exit_height_adjust, w/2.8, h * 0.12, screen, farge1)
-    avsluttfirkant1 = firkant(w/3, h/2 * 0.948 + Exit_height_adjust, w/3, h * 0.11, screen, farge2)
+    avsluttfirkant2 = firkant(w/2-h/3.2, h/2 * 0.94 + Exit_height_adjust, h/1.6, h * 0.12, screen, farge1)
+    avsluttfirkant1 = firkant(w/2-h/3.4, h/2 * 0.948 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
 
-    Instillingsfirkant2 = firkant(w/3.1, h/2 * 0.49 + Exit_height_adjust, w/2.8, h * 0.12, screen, farge1)
-    Instillingsfirkant1 = firkant(w/3, h/2 * 0.498 + Exit_height_adjust, w/3, h * 0.11, screen, farge2)
+    Instillingsfirkant2 = firkant(w/2-h/3.2, h/2 * 0.49 + Exit_height_adjust, h/1.6, h * 0.12, screen, farge1)
+    Instillingsfirkant1 = firkant(w/2-h/3.4, h/2 * 0.498 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
 
-    splash_text(screen, "Avslutt Spillet",factoroffset = 0.99, height_adjust=Exit_height_adjust)
-    splash_text(screen, "Instillinger", factoroffset=0.54, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Avslutt Spillet",font_size=skalering(120),factoroffset = 0.99, height_adjust=Exit_height_adjust)
+    splash_text(screen, "Instillinger",font_size=skalering(120), factoroffset=0.54, height_adjust=Exit_height_adjust)
 
 
     for event in pygame.event.get():
@@ -74,21 +78,20 @@ def instillinger(screen):
     farge2 = (0,0,0)
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/4
-    (wt,ht) = splash_text(screen, "Avslutt Spillet", height_adjust=Exit_height_adjust)
 
-    rezfirkant2 = firkant(w/3.25, h/2 * 0.01 + Exit_height_adjust, w/2.6, h * 0.12, screen, farge1)
-    rezfirkant1 = firkant(w/3.10, h/2 * 0.02 + Exit_height_adjust, w/2.8, h * 0.11, screen, farge2)
-    splash_text(screen, "Endre Oppløsning", factoroffset=0.06, height_adjust=Exit_height_adjust)
+    rezfirkant2 = firkant(w/2-h/3.2, h/2 * 0.01 + Exit_height_adjust,  h/1.6, h * 0.12, screen, farge1)
+    rezfirkant1 = firkant(w/2-h/3.4, h/2 * 0.02 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
+    splash_text(screen, "Endre Oppløsning",font_size=skalering(90), factoroffset=0.06, height_adjust=Exit_height_adjust)
 
     #Velger mellom fullskjerm eller vindu
-    togglefirkant2 = firkant(w/3.25, h/2 * 0.49 + Exit_height_adjust,  w/2.6, h * 0.12, screen, farge1)
-    togglefirkant1 = firkant(w/3.10, h/2 * 0.498 + Exit_height_adjust, w/2.8, h * 0.11, screen, farge2)
-    splash_text(screen, "Veksle fullskjerm", factoroffset=0.55, height_adjust=Exit_height_adjust)
+    togglefirkant2 = firkant(w/2-h/3.2, h/2 * 0.49 + Exit_height_adjust,   h/1.6, h * 0.12, screen, farge1)
+    togglefirkant1 = firkant(w/2-h/3.4, h/2 * 0.498 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
+    splash_text(screen, "Veksle fullskjerm",font_size=skalering(90), factoroffset=0.55, height_adjust=Exit_height_adjust)
 
     #Tilbakeknapp
-    avsluttfirkant2 = firkant(w/3.25, h/2 * 0.94 + Exit_height_adjust, w/2.6, h * 0.12, screen, farge1)
-    avsluttfirkant1 = firkant(w/3.10, h/2 * 0.948 + Exit_height_adjust, w/2.8, h * 0.11, screen, farge2)
-    splash_text(screen, "Tilbake", height_adjust=Exit_height_adjust)
+    avsluttfirkant2 = firkant(w/2-h/3.2, h/2 * 0.94 + Exit_height_adjust,  h/1.6, h * 0.12, screen, farge1)
+    avsluttfirkant1 = firkant(w/2-h/3.4, h/2 * 0.948 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
+    splash_text(screen, "Tilbake",font_size=skalering(90), height_adjust=Exit_height_adjust)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
