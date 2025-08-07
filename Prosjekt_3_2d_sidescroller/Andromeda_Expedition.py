@@ -164,6 +164,8 @@ def instillinger(screen):
                 fullscreen_change_reversion_screen(screen)
             if rezfirkant1.collidepoint(pygame.mouse.get_pos()):
                 screeninfo = pygame.display.list_modes()
+                vindutype = (screen.get_flags() & pygame.FULLSCREEN)
+                print(vindutype)
                 nåværende_oppløsning = pygame.display.get_surface().get_size()
                 if nåværende_oppløsning in screeninfo:
                     index = screeninfo.index(nåværende_oppløsning)
@@ -172,8 +174,12 @@ def instillinger(screen):
                         neste_index = 0
                 else:
                     neste_index = 0
-                
-                pygame.display.set_mode((screeninfo[neste_index]))
+                if vindutype != 0:
+
+                    pygame.display.set_mode((screeninfo[neste_index]), pygame.FULLSCREEN)
+                else:
+                    pygame.display.set_mode((screeninfo[neste_index]), pygame.RESIZABLE)
+
 
 
 
