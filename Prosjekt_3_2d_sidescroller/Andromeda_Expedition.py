@@ -78,8 +78,8 @@ def fullscreen_change_reversion_screen(screen, time = 600):
     pygame.display.toggle_fullscreen()
 
 
-def splash_page(screen):
-    splash_text(screen,"Laget av Audun Steinkopf i pygame")
+def splash_page(screen, tekst="Laget av Audun Steinkopf i pygame"):
+    splash_text(screen,tekst)
     pygame.display.update()
     time.sleep(1)
 
@@ -123,7 +123,8 @@ def main_menu(screen):
             if Lastfirkant1.collidepoint(pygame.mouse.get_pos()):
                 continue#Fikser senere
             if Nyttfirkant1.collidepoint(pygame.mouse.get_pos()):
-                new_game()
+                new_game(screen)
+                print("kjørte nytt spill")
             
 
         #Dersom ingenting annet blir valgt fortsetter løkken som før
@@ -135,7 +136,7 @@ def instillinger(screen):
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/4
     rez_string = f"Oppløsning: {w}X{h}"
-    splash_text(screen, rez_string,font_size=skalering(120), factoroffset=0)
+    splash_text(screen, rez_string,font_size=skalering(120), factoroffset=1)
 
     rezfirkant2 = firkant(w/2-h/3.2, h/2 * 0.01 + Exit_height_adjust,  h/1.6, h * 0.12, screen, farge1)
     rezfirkant1 = firkant(w/2-h/3.4, h/2 * 0.02 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
@@ -187,8 +188,24 @@ def instillinger(screen):
 
     return "instillinger"
 #Selve spillet
-def new_game():
-    return
+def new_game(screen):
+    screen.fill((0,0,0))
+
+    tekst1 = ["Året er 4001","en rik hertug finansierte en koloniekspedisjon til andromeda",
+    "Hertugen i hans klokskap sendte med en stor arme",
+    "men de slu xenoenes plot mot tsaren utløste en ny galaktisk storkrig",
+    "majoriteten av armeen begynte dermed den lange turen hjem",
+    "ekspedisjonen var dermed underbemannet mot de sovende trusslene..."]
+    for tekst in tekst1:
+    
+        splash_text(screen, tekst,font_size=skalering(70))
+        pygame.display.update()
+        print(tekst)
+        time.sleep(5)
+        screen.fill((0,0,0))
+
+
+    return "main_menu"
 #Selve spilløkken
 def run(screen):
     running = True
