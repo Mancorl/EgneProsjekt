@@ -123,7 +123,7 @@ def main_menu(screen):
             if Lastfirkant1.collidepoint(pygame.mouse.get_pos()):
                 continue#Fikser senere
             if Nyttfirkant1.collidepoint(pygame.mouse.get_pos()):
-                new_game(screen)
+                return new_game(screen)
                 print("kjørte nytt spill")
             
 
@@ -136,7 +136,7 @@ def instillinger(screen):
     w,h = pygame.display.get_surface().get_size()
     Exit_height_adjust = h/4
     rez_string = f"Oppløsning: {w}X{h}"
-    splash_text(screen, rez_string,font_size=skalering(120), factoroffset=1)
+    splash_text(screen, rez_string,font_size=skalering(120), factoroffset=0)
 
     rezfirkant2 = firkant(w/2-h/3.2, h/2 * 0.01 + Exit_height_adjust,  h/1.6, h * 0.12, screen, farge1)
     rezfirkant1 = firkant(w/2-h/3.4, h/2 * 0.02 + Exit_height_adjust, h/1.7, h * 0.11, screen, farge2)
@@ -181,15 +181,57 @@ def instillinger(screen):
                 else:
                     pygame.display.set_mode((screeninfo[neste_index]), pygame.RESIZABLE)
 
-
-
-
-
-
     return "instillinger"
+
+#Animasjon
+def draw_mc(screen,x,y, gun):
+    color1 = (100,255,100)
+    color2 = (255,165,0)
+
+    #Hode
+    pygame.draw.circle(screen,color1, (x,y), y//14)
+    #Hals
+    firkant(x-y//38, y,y//20, y//10,screen,color1)
+    #pygame.draw.rect(screen, color1, (x-y//38, y,y//20, y//10))
+    #Kropp
+    firkant(x-y//10, y + y//10, y//5, y//5, screen, color1)
+    #pygame.draw.rect(screen, color1, (x-y//10, y + y//10, y//5, y//5))
+    #Bein(venstre)
+    ##firkant(x-y//10, y + y//10 + y//5, y//15,y//5, screen, color1)
+    firkant(x-y//10, y + y//10 + y//5, y//15,y//5, screen, color1)
+
+    #Bein(høyre)
+    ##firkant(x+y//10 - y//15, y + y//10 + y//5, y//15,y//5, screen, color1) 
+    
+
+#objekter
+class mc:
+    def __init__(self,screen, x, y):
+        self.gun = "Shotgun"
+        self.x = x
+        self.y = y
+        self.screen = screen
+    
+    def change_gun(self, gun):
+        if gun == "Shotgun":
+            self.gun = "Pistol"
+        if gun == "Pistol":
+            self.gun = "Rifle"
+        if gun == "Rifle":
+            self.gun = "Shotgun"
+
+    def draw_main_character(self):
+        draw_mc(self.screen, self.x,self.y,self.gun)
+
+
+
+
 #Selve spillet
 def new_game(screen):
+    w,h = pygame.display.get_surface().get_size()
+    player = mc(screen,w//2,h//2)
     screen.fill((0,0,0))
+    result = "main_menu"
 
     tekst1 = ["Året er 4001","en rik hertug finansierte en koloniekspedisjon til andromeda",
     "Hertugen i hans klokskap sendte med en stor arme",
@@ -201,12 +243,25 @@ def new_game(screen):
         splash_text(screen, tekst,font_size=skalering(70))
         pygame.display.update()
         print(tekst)
-        time.sleep(5)
+        time.sleep(0.2)
         screen.fill((0,0,0))
 
+    result = level_1(screen, player)
 
-    return "main_menu"
+
+    return result
 #Selve spilløkken
+
+def level_1(screen, player):
+    while True:
+        screen.fill((0,0,0))
+        player.draw_main_character()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return "quit"
+            
+        pygame.display.update()
+
 def run(screen):
     running = True
     splash_page(screen)
