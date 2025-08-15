@@ -3,14 +3,19 @@ import time
 
     #initialisering og diverse funksjoner som skal brukes
 def main():
-    __init__()#initialiserer pygame
-    screen = get_screen()#Lager lerretet vi kan tegne spillet på
-    run(screen)#kjører selve spillet
+    try:
+        __init__()#initialiserer pygame
+        screen = get_screen()#Lager lerretet vi kan tegne spillet på
+        run(screen)#kjører selve spillet
+    except Exception as e:
+        print(e)
+        pygame.QUIT
 
 
 def __init__():
     pygame.init()
-    pygame.display.set_caption("Andromeda Expedition")
+    #pygame.display.set_caption("Andromeda Expedition")
+    pygame.display.set_caption("rommie")
 
 def get_screen():
     stats = pygame.display.Info()
@@ -184,7 +189,7 @@ def instillinger(screen):
     return "instillinger"
 
 #Animasjon
-def draw_mc(screen,x,y, gun):
+def draw_mc(screen,x,y, gun, dx,dy, cooleg):
     color1 = (100,255,100)
     color2 = (255,165,0)
 
@@ -198,19 +203,30 @@ def draw_mc(screen,x,y, gun):
     #pygame.draw.rect(screen, color1, (x-y//10, y + y//10, y//5, y//5))
     #Bein(venstre)
     ##firkant(x-y//10, y + y//10 + y//5, y//15,y//5, screen, color1)
-    firkant(x-y//10, y + y//10 + y//5, y//15,y//5, screen, color1)
+    if dx == 0 and dy == 0:
+        rot = 0
+    #Venstre ben
+    benet(screen,y//15,y//5,x-y//10 + y//30, y + y//10 + y//5 + y//10, rot)
+    #Høyre ben
+    benet(screen,y//15,y//5,x+y//15, y + y//10 + y//5 + y//10, rot)
 
-    #Bein(høyre)
-    ##firkant(x+y//10 - y//15, y + y//10 + y//5, y//15,y//5, screen, color1) 
-    
+def benet(screen,y1, y2, y3, y4, ):
+    color3 = (50, 200, 50)
+    ben = pygame.Surface((y1,y2), pygame.SRCALPHA)
+    rekt = ben.get_rect(center=(y3, y4))
+    pygame.draw.rect(ben, color3, (0,0,y1,y2))
+    screen.blit(ben,rekt)
 
 #objekter
 class mc:
-    def __init__(self,screen, x, y):
+    def __init__(self,screen, x, y, dx, dy):
         self.gun = "Shotgun"
         self.x = x
         self.y = y
         self.screen = screen
+        self.dx = dx
+        self.dy = dy
+        self.colleg = 0#Cooldown for ben animasjon(cooldown leg)
     
     def change_gun(self, gun):
         if gun == "Shotgun":
@@ -221,7 +237,7 @@ class mc:
             self.gun = "Shotgun"
 
     def draw_main_character(self):
-        draw_mc(self.screen, self.x,self.y,self.gun)
+        self.colleg = draw_mc(self.screen, self.x,self.y,self.gun, self.dx, self.dy, self.colleg)
 
 
 
@@ -229,7 +245,7 @@ class mc:
 #Selve spillet
 def new_game(screen):
     w,h = pygame.display.get_surface().get_size()
-    player = mc(screen,w//2,h//2)
+    player = mc(screen,w//2,h//2,0,0)
     screen.fill((0,0,0))
     result = "main_menu"
 
