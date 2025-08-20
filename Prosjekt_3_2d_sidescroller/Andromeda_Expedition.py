@@ -205,16 +205,31 @@ def draw_mc(screen,x,y, gun, dx,dy, cooleg):
     ##firkant(x-y//10, y + y//10 + y//5, y//15,y//5, screen, color1)
     if dx == 0 and dy == 0:
         rot = 0
-    #Venstre ben
-    benet(screen,y//15,y//5,x-y//10 + y//30, y + y//10 + y//5 + y//10, rot)
-    #Høyre ben
-    benet(screen,y//15,y//5,x+y//15, y + y//10 + y//5 + y//10, rot)
+        #Venstre ben
+        benet(screen,y//15,y//5,x-y//10 + y//30, y + y//10 + y//5 + y//10, rot)
+        #Høyre ben
+        benet(screen,y//15,y//5,x+y//15, y + y//10 + y//5 + y//10, rot)
+    #Beveger seg mot høyre
+    if dx > 0 and dy == 0:
+        rot = -45
+        #Venstre ben
+        benet(screen,y//15,y//5,x-y//10 + y//30, y + y//10 + y//5 + y//10, rot)
+        #Høyre ben
+        benet(screen,y//15,y//5,x+y//15, y + y//10 + y//5 + y//10, rot)
+    #beveger seg mot venstre
+    if dx < 0 and dy == 0:
+        rot = -45
+        #Venstre ben
+        benet(screen,y//15,y//5,x-y//10 + y//30, y + y//10 + y//5 + y//10, rot)
+        #Høyre ben
+        benet(screen,y//15,y//5,x+y//15, y + y//10 + y//5 + y//10, rot)
 
-def benet(screen,y1, y2, y3, y4, ):
+def benet(screen,y1, y2, y3, y4, rot):
     color3 = (50, 200, 50)
     ben = pygame.Surface((y1,y2), pygame.SRCALPHA)
-    rekt = ben.get_rect(center=(y3, y4))
     pygame.draw.rect(ben, color3, (0,0,y1,y2))
+    ben = pygame.transform.rotate(ben,rot)
+    rekt = ben.get_rect(center=(y3, y4))
     screen.blit(ben,rekt)
 
 #objekter
@@ -239,6 +254,16 @@ class mc:
     def draw_main_character(self):
         self.colleg = draw_mc(self.screen, self.x,self.y,self.gun, self.dx, self.dy, self.colleg)
 
+def input(mc):
+    inp = pygame.event.get()
+    for event in inp:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                mc.dx = -10
+            elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                mc.dx = 10
+            elif event.key == pygame.K_w or pygame.key == pygame.K_SPACE:
+                mc.dy = 100
 
 
 
